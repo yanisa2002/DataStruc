@@ -34,7 +34,7 @@ for i in range(len(R)):
     elif s[0] == 'D':
         if not Q.isEmpty() :
             Q.deQ()
-
+            
 if len(Q.List)!=len(list(dict.fromkeys(Q.List))):
     print("Duplicate") 
 else : print("NO Duplicate")
