@@ -71,51 +71,32 @@ class LinkedList:
         return self.Size
 
     def pop(self, pos):
+        cur = self.head
+        if pos > self.Size - 1 or pos < 0:
+            return "Out of Range"
+
         if self.isEmpty():
             return "Out of Range"
-        elif pos == 0:
-            c = self.head
-            self.head = c.next
-            c.next = None
+        
+        if pos == 0:
+            self.head = cur.next
+            cur.next = None
             self.Size -= 1
             return "Success"
-        else:
-            inDex = -1
-            c = self.head
-            while c != None:
-                inDex += 1
-                if inDex == pos:
-                    break
-                p = c
-                c = c.next
-            p.next = c.next
-            c.next = None
-            self.Size -= 1
-            return "Success"
-
-            cur_node = self.head
-            # if cur_node and cur_node.value == pos:
-            #     self.head = cur_node.next
-            #     cur_node = None
-            #     return "Out of Range"
             
-            # prev = None
-            # while cur_node and cur_node.value != pos:
-            #     prev = cur_node
-            #     cur_node = cur_node.next
-            
-            # if cur_node is None:
-            #     return
+        prev = None
+        inDex = 0
+        while cur and inDex != pos:
+            inDex += 1
+            prev = cur
+            cur = cur.next
 
-            # prev.next = cur_node.next
-            # cur_node = None
-
-
+        prev.next = cur.next
+        cur = None
+        self.Size -= 1
+        return "Success"
 
 L = LinkedList()
-# L.append('A')
-# L.append('B')
-# L.addHead('C')
 inp = input('Enter Input : ').split(',')
 for i in inp:
     if i[:2] == "AP":
