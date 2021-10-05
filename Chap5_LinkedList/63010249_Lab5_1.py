@@ -75,26 +75,29 @@ class LinkedList:
         if pos > self.Size - 1 or pos < 0:
             return "Out of Range"
 
-        if self.isEmpty():
+        elif self.isEmpty():
             return "Out of Range"
         
-        if pos == 0:
-            self.head = cur.next
-            cur.next = None
+        elif pos == 0:
+            if self.Size == 1:
+                self.head = None
+            else:
+                self.head = self.head.next
+                cur.next = None
             self.Size -= 1
             return "Success"
-            
-        prev = None
-        inDex = 0
-        while cur and inDex != pos:
-            inDex += 1
-            prev = cur
-            cur = cur.next
+        else:    
+            prev = None
+            inDex = 0
+            while cur and inDex != pos:
+                inDex += 1
+                prev = cur
+                cur = cur.next
 
-        prev.next = cur.next
-        cur = None
-        self.Size -= 1
-        return "Success"
+            prev.next = cur.next
+            cur = None
+            self.Size -= 1
+            return "Success"
 
 L = LinkedList()
 inp = input('Enter Input : ').split(',')
